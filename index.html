@@ -137,7 +137,9 @@ main{margin-left:var(--nav-w)}
 .proj-desc{font-size:14.5px;color:var(--ink-soft)}
 .proj-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .proj-links{display:flex;gap:18px;margin-top:16px}
-.proj-links a{font-family:var(--f-mono);font-size:13px;display:inline-flex;align-items:center;gap:7px;color:var(--ink)}
+.proj-links a{font-family:var(--f-mono);font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:8px;color:#fff;background:var(--green);padding:10px 22px;border-radius:8px;transition:all .2s var(--ease)}
+.proj-links a:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.proj-links a:hover .arrow,.proj-links a .arrow{opacity:1;transform:none}
 .proj-links .arrow{color:var(--green);opacity:0;transition:all .2s var(--ease);transform:translateX(-6px)}
 .proj-links a:hover .arrow{opacity:1;transform:none}
 
@@ -333,7 +335,7 @@ main{margin-left:var(--nav-w)}
         </div>
       </div>
     </div>
-    <div class="proj-item reveal">
+<div class="proj-item reveal">
       <span class="proj-index">02</span>
       <div>
         <h3 class="proj-name">Noor HMS<span class="proj-flag">Product</span></h3>
@@ -349,8 +351,7 @@ main{margin-left:var(--nav-w)}
         </div>
       </div>
     </div>
-
-    <div class="proj-item reveal">
+<div class="proj-item reveal">
       <span class="proj-index">03</span>
       <div>
         <h3 class="proj-name">Noor Suite<span class="proj-flag">ERP</span></h3>
@@ -365,103 +366,11 @@ main{margin-left:var(--nav-w)}
         </div>
       </div>
     </div>
-
-    <div class="proj-item reveal">
-      <span class="proj-index">04</span>
-      <div>
-        <h3 class="proj-name">Noor Clinic HMS<span class="proj-flag">NEW</span></h3>
-        <div class="proj-links">
-          <a href="https://noooreldein.github.io/noor-clinic/" target="_blank">Live <span class="arrow">&rarr;</span></a>
-        </div>
-      </div>
-      <div>
-        <p class="proj-desc">Full clinic &amp; pharmacy management system in Arabic: dashboard, patients, doctors, appointments, pharmacy inventory, invoices with stock deduction &amp; printing, and Canvas-drawn analytics reports — zero dependencies.</p>
-        <div class="proj-tags">
-          <span class="badge">Vanilla JS</span><span class="badge">Canvas Charts</span><span class="badge">localStorage</span><span class="badge">RTL</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="proj-item reveal">
-      <span class="proj-index">05</span>
-      <div>
-        <h3 class="proj-name">Chat Zone</h3>
-        <div class="proj-links">
-          <a href="https://chat-zone-tau.vercel.app" target="_blank">Live <span class="arrow">→</span></a>
-        </div>
-      </div>
-      <div>
-        <p class="proj-desc">Real-time chat platform with a clean modern UI — deployed and live for real users.</p>
-        <div class="proj-tags"><span class="badge">HTML/CSS/JS</span><span class="badge">Real-time</span></div>
-      </div>
-    </div>
-
-    <div class="proj-item reveal">
-      <span class="proj-index">06</span>
-      <div>
-        <h3 class="proj-name">X-HOST Panel v3</h3>
-        <div class="proj-links">
-        </div>
-      </div>
-      <div>
-        <p class="proj-desc">Web hosting control panel with dashboards for managing deployments and services — iterated through 4 versions.</p>
-        <div class="proj-tags"><span class="badge">HTML/CSS/JS</span><span class="badge">Dashboards</span></div>
-      </div>
-    </div>
-
-    <div class="proj-item reveal">
-      <span class="proj-index">07</span>
-      <div>
-        <h3 class="proj-name">FullStack API v2</h3>
-        <div class="proj-links">
-          <a href="https://full-stack-api-v2.vercel.app" target="_blank">Live <span class="arrow">→</span></a>
-        </div>
-      </div>
-      <div>
-        <p class="proj-desc">Full-stack API platform with a complete web interface — endpoints, docs and deployment in one project.</p>
-        <div class="proj-tags"><span class="badge">Python</span><span class="badge">REST API</span></div>
-      </div>
-    </div>
-
-    <div class="proj-item reveal">
-      <span class="proj-index">08</span>
-      <div>
-        <h3 class="proj-name">HMGPT</h3>
-        <div class="proj-links">
-          <a href="https://pyramids-dun.vercel.app" target="_blank">Live <span class="arrow">→</span></a>
-        </div>
-      </div>
-      <div>
-        <p class="proj-desc">AI chat web app integrating large language model APIs with a clean conversational interface.</p>
-        <div class="proj-tags"><span class="badge">Python</span><span class="badge">AI APIs</span><span class="badge">Vercel</span></div>
-      </div>
-    </div>
-
-    <div class="proj-item reveal">
-      <span class="proj-index">09</span>
-      <div>
-        <h3 class="proj-name">XKGPT</h3>
-        <div class="proj-links">
-          <a href="https://xkgpt.vercel.app" target="_blank">Live <span class="arrow">→</span></a>
-        </div>
-      </div>
-      <div>
-        <p class="proj-desc">AI assistant web platform with multi-model support and a web dashboard.</p>
-        <div class="proj-tags"><span class="badge">Python</span><span class="badge">AI APIs</span><span class="badge">Dashboard</span></div>
-      </div>
-    </div>
   </div>
-</section>
-
-<!-- STATS -->
-<section class="section stats-section" id="stats">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="section-num">04 /</span>
-      <h2 class="section-title">By the numbers</h2>
+By the numbers</h2>
     </div>
     <div class="stats-grid">
-      <div class="stat reveal"><div class="num" data-count="9">0</div><div class="label">Projects Built</div></div>
+      <div class="stat reveal"><div class="num" data-count="3">0</div><div class="label">Projects Built</div></div>
       <div class="stat reveal"><div class="num" data-count="15">0</div><div class="label">Live Deployments</div></div>
       <div class="stat reveal"><div class="num" data-count="2">0</div><div class="label">Years Coding</div></div>
       <div class="stat reveal"><div class="num" data-count="4">0</div><div class="label">E-Commerce Features</div></div>
