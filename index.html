@@ -9,329 +9,502 @@
 <meta property="og:description" content="Egyptian full-stack web developer building e-commerce platforms, real-time apps and AI-powered web apps.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://noooreldein.github.io">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23090d13'/><text x='50' y='72' font-size='62' font-family='monospace' font-weight='bold' fill='%233ddc84' text-anchor='middle'>N</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%230D0D0D'/><text x='50' y='72' font-size='62' font-family='monospace' font-weight='bold' fill='%23F4C430' text-anchor='middle'>N</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#090d13;
-  --bg2:#0c1119;
-  --card:#101725;
-  --border:#1d2939;
-  --border-hi:#2c3d52;
-  --green:#3ddc84;
-  --green-dim:rgba(61,220,132,.1);
-  --txt:#e8eef5;
-  --muted:#8fa0b3;
-  --mono:'JetBrains Mono',monospace;
-  --sans:'Space Grotesk',sans-serif;
+  --bg:#FAFAF7; --bg-alt:#F1F0EA; --ink:#0D0D0D; --ink-soft:#55534C;
+  --line:#DEDCD3; --yellow:#F4C430; --yellow-ink:#3A2E00;
+  --green:#12B76A; --green-dim:#0B7A46; --white:#FFFFFF;
+  --f-display:'Archivo Black','Arial Black',sans-serif;
+  --f-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --f-mono:'JetBrains Mono',SFMono-Regular,Menlo,monospace;
+  --nav-w:220px; --gutter:clamp(20px,5vw,64px); --radius:2px;
+  --ease:cubic-bezier(.22,.9,.32,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
-::selection{background:var(--green);color:#08120b}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+::selection{background:var(--yellow);color:var(--yellow-ink)}
 a{color:inherit;text-decoration:none}
-section{padding:110px 24px;max-width:1120px;margin:0 auto;position:relative}
-h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:700;letter-spacing:-.02em}
-.mono{font-family:var(--mono)}
-.grn{color:var(--green)}
-::-webkit-scrollbar{width:9px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:5px}
-::-webkit-scrollbar-thumb:hover{background:var(--border-hi)}
+.mono{font-family:var(--f-mono)}
+.muted{color:var(--ink-soft)}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,13,19,.8);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
-.nav-in{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:15px 24px}
-.logo{font-family:var(--mono);font-weight:700;font-size:1.2rem;color:var(--green)}
-.nav-links{display:flex;gap:26px;font-family:var(--mono);font-size:.8rem}
-.nav-links a{color:var(--muted);transition:color .2s}
-.nav-links a:hover{color:var(--green)}
-@media(max-width:760px){.nav-links{display:none}}
-
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:150px;padding-bottom:60px}
-#hero::before{content:"";position:absolute;top:-200px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(61,220,132,.09),transparent 65%);pointer-events:none}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center;position:relative}
-@media(max-width:880px){.hero-grid{grid-template-columns:1fr}}
-.badge{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.75rem;color:var(--green);background:var(--green-dim);border:1px solid rgba(61,220,132,.3);padding:7px 15px;border-radius:100px;margin-bottom:24px}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 1.6s infinite}
+/* ===== sidenav ===== */
+.sidenav{position:fixed;top:0;left:0;bottom:0;width:var(--nav-w);padding:40px 28px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  border-right:1px solid var(--line);background:var(--bg);z-index:70}
+.sidenav .logo{font-family:var(--f-display);font-size:18px}
+.sidenav-links{display:flex;flex-direction:column;gap:2px;margin-top:48px}
+.sidenav-links a{font-family:var(--f-mono);font-size:12.5px;color:var(--ink-soft);
+  padding:7px 8px;border-radius:var(--radius);transition:all .2s var(--ease)}
+.sidenav-links a:hover{color:var(--ink);background:var(--bg-alt);transform:translateX(3px)}
+.sidenav-foot{font-family:var(--f-mono);font-size:11px;color:var(--ink-soft);line-height:2}
+.sidenav-foot .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:6px;animation:pulse 1.8s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-.hero-name{font-size:clamp(2.7rem,6.8vw,4.6rem);font-weight:700;letter-spacing:-.03em;line-height:1.04;margin-bottom:8px}
-.hero-name span{color:var(--green)}
-.hero-role{font-family:var(--mono);font-size:.85rem;color:var(--muted);margin-bottom:20px}
-.hero-sub{color:var(--muted);font-size:1.06rem;max-width:540px;margin-bottom:36px}
-.hero-sub b{color:var(--txt);font-weight:600}
-.btns{display:flex;gap:14px;flex-wrap:wrap}
-.btn{font-family:var(--mono);font-size:.85rem;padding:13px 26px;border-radius:10px;transition:.2s;cursor:pointer;border:1px solid var(--border)}
-.btn-p{background:var(--green);color:#08120b;border-color:var(--green);font-weight:700}
-.btn-p:hover{background:#2fb96b;transform:translateY(-2px)}
-.btn-s{color:var(--txt);background:var(--card)}
-.btn-s:hover{border-color:var(--green);color:var(--green);transform:translateY(-2px)}
-.term{background:#060a0f;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.55)}
-.term-bar{display:flex;gap:8px;padding:13px 16px;border-bottom:1px solid var(--border)}
-.term-bar span{width:11px;height:11px;border-radius:50%}
-.term-bar span:nth-child(1){background:#ff5f57}.term-bar span:nth-child(2){background:#febc2e}.term-bar span:nth-child(3){background:#28c840}
-.term-body{padding:22px;font-family:var(--mono);font-size:.8rem;min-height:245px}
-.term-body .l{margin-bottom:9px;white-space:pre-wrap}
-.term-body .p{color:var(--green)}
-.cursor{display:inline-block;width:8px;height:15px;background:var(--green);vertical-align:middle;animation:pulse 1s infinite}
-.scroll-hint{margin-top:64px;text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--muted);animation:bounce 2s infinite}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+@media(max-width:900px){.sidenav{display:none}}
 
-.sec-head{margin-bottom:56px}
-.sec-num{font-family:var(--mono);font-size:.78rem;color:var(--green);display:block;margin-bottom:10px}
-.sec-head p{color:var(--muted);margin-top:10px;max-width:660px}
+/* ===== topbar (mobile) ===== */
+.topbar{display:none;position:sticky;top:0;z-index:60;background:var(--bg);
+  border-bottom:1px solid var(--line);padding:14px var(--gutter);
+  justify-content:space-between;align-items:center}
+.topbar .logo{font-family:var(--f-display);font-size:18px}
+.topbar nav{display:flex;gap:14px;font-family:var(--f-mono);font-size:11.5px;color:var(--ink-soft)}
+@media(max-width:900px){.topbar{display:flex}}
 
-.about-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:46px}
-@media(max-width:860px){.about-grid{grid-template-columns:repeat(2,1fr)}}
-.about-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;transition:.25s}
-.about-card:hover{border-color:var(--green);transform:translateY(-4px)}
-.about-card .k{font-family:var(--mono);font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
-.about-card .v{font-size:1.18rem;font-weight:600;margin-top:6px}
+main{margin-left:var(--nav-w)}
+@media(max-width:900px){main{margin-left:0}}
 
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
-.skill-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;transition:.25s}
-.skill-card:hover{border-color:var(--green);transform:translateY(-3px)}
-.skill-card .idx{font-family:var(--mono);font-size:.72rem;color:var(--green)}
-.skill-card h3{margin:8px 0 16px;font-size:1.05rem}
-.tags{display:flex;flex-wrap:wrap;gap:8px}
-.tag{font-family:var(--mono);font-size:.72rem;color:var(--muted);background:var(--bg);border:1px solid var(--border);padding:6px 12px;border-radius:6px;transition:.2s}
-.tag:hover{color:var(--green);border-color:var(--green)}
+.container{max-width:1180px;margin:0 auto;padding:0 var(--gutter)}
+.section{border-top:1px solid var(--line);padding:88px 0}
+.section-head{display:flex;align-items:baseline;gap:18px;margin-bottom:48px;flex-wrap:wrap}
+.section-num{font-family:var(--f-mono);font-size:13px;color:var(--ink-soft);letter-spacing:.05em}
+.section-title{font-family:var(--f-display);font-size:clamp(28px,4vw,44px);line-height:1.05;letter-spacing:-.01em}
+.section-sub{color:var(--ink-soft);max-width:60ch;margin-top:-30px;margin-bottom:44px;font-size:15.5px}
 
-.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
-.proj{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px;transition:.25s;position:relative;overflow:hidden}
-.proj::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--green-dim),transparent 55%);opacity:0;transition:.3s}
-.proj:hover{transform:translateY(-5px);border-color:var(--green)}
-.proj:hover::before{opacity:1}
-.proj>*{position:relative}
-.proj .top{display:flex;justify-content:space-between;align-items:center}
-.proj .num{font-family:var(--mono);font-size:.72rem;color:var(--green)}
-.proj .feat{font-family:var(--mono);font-size:.62rem;color:var(--green);border:1px solid rgba(61,220,132,.3);border-radius:100px;padding:3px 10px}
-.proj h3{font-size:1.3rem;letter-spacing:-.01em}
-.proj p{color:var(--muted);font-size:.9rem;flex:1}
-.proj .links{display:flex;gap:16px;font-family:var(--mono);font-size:.75rem;margin-top:2px}
-.proj .links a{color:var(--muted);transition:.2s}
-.proj .links a:hover{color:var(--green)}
+/* ===== hero ===== */
+.hero{min-height:92vh;display:flex;align-items:center;padding:56px 0;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,72px);align-items:center}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--green-dim);display:inline-flex;align-items:center;gap:8px}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 1.8s infinite}
+.hero-title{font-family:var(--f-display);font-size:clamp(40px,6.4vw,84px);line-height:.98;letter-spacing:-.015em;margin-top:18px}
+.hero-subtitle{margin-top:22px;font-size:clamp(16px,1.6vw,19px);color:var(--ink-soft);max-width:46ch;font-weight:500}
+.hero-desc{margin-top:12px;color:var(--ink-soft);max-width:52ch}
+.hero-actions{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+.btn{font-family:var(--f-mono);font-size:13px;padding:13px 22px;border:1px solid var(--ink);
+  border-radius:var(--radius);display:inline-flex;align-items:center;gap:8px;transition:all .2s var(--ease);cursor:pointer}
+.btn-solid{background:var(--ink);color:var(--white)}
+.btn-solid:hover{transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(0,0,0,.4)}
+.btn-outline{background:transparent;color:var(--ink)}
+.btn-outline:hover{background:var(--bg-alt)}
+.btn-yellow{background:var(--yellow);border-color:var(--yellow);color:var(--yellow-ink);font-weight:700}
+.btn-yellow:hover{transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(244,196,48,.6)}
+.hero-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+.badge{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.03em;padding:8px 12px;
+  border:1px solid var(--line);border-radius:999px;display:inline-flex;align-items:center;gap:7px;background:var(--white)}
+/* hero art */
+.hero-art{position:relative;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
+.blob{position:absolute;inset:8%;background:var(--yellow);border-radius:42% 58% 55% 45% / 48% 40% 60% 52%;
+  animation:blobmove 12s ease-in-out infinite alternate}
+@keyframes blobmove{0%{border-radius:42% 58% 55% 45% / 48% 40% 60% 52%}100%{border-radius:58% 42% 45% 55% / 42% 60% 40% 58%}}
+.terminal{position:relative;z-index:2;width:82%;background:var(--ink);border-radius:10px;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.4);overflow:hidden;transform:rotate(-2deg)}
+.terminal-bar{display:flex;gap:6px;padding:11px 14px;background:#1c1c1c}
+.terminal-bar i{width:10px;height:10px;border-radius:50%;display:block}
+.terminal-bar i:nth-child(1){background:#ff5f57}.terminal-bar i:nth-child(2){background:#febc2e}.terminal-bar i:nth-child(3){background:#28c840}
+.terminal-body{font-family:var(--f-mono);font-size:12.5px;color:#c7f9d9;padding:18px 16px 22px;line-height:1.9}
+.terminal-body .cmd{color:var(--yellow)}
+.terminal-body .muted{color:#6b6f76}
+.terminal-body .ok{color:var(--green)}
+.cursor{display:inline-block;width:8px;height:14px;background:#c7f9d9;vertical-align:middle;animation:pulse 1s infinite}
+@media(max-width:900px){.hero-art{max-width:420px;margin:0 auto}}
 
-#stats{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2)}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:22px;text-align:center}
-.stat .n{font-family:var(--mono);font-size:clamp(2rem,4.5vw,3.1rem);font-weight:700;color:var(--green)}
-.stat .lbl{color:var(--muted);font-size:.85rem;margin-top:4px}
+/* ===== about facts ===== */
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:start}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr}}
+.about-text p{color:var(--ink-soft);max-width:58ch}
+.about-text p b{color:var(--ink)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.fact{background:var(--bg);padding:20px}
+.fact .k{font-family:var(--f-mono);font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em}
+.fact .v{font-family:var(--f-display);font-size:18px;margin-top:6px}
 
-.cert-note{background:var(--card);border:1px dashed var(--border-hi);border-radius:16px;padding:48px;text-align:center;color:var(--muted)}
-.cert-note .mono{color:var(--green)}
+/* ===== skills ===== */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.skill-cat{background:var(--bg);padding:28px 24px;transition:background .25s var(--ease)}
+.skill-cat:hover{background:var(--white)}
+.skill-cat .cat-num{font-family:var(--f-mono);font-size:12px;color:var(--green-dim)}
+.skill-cat h3{font-family:var(--f-display);font-size:16px;margin-top:8px}
+.skill-list{margin-top:16px;display:flex;flex-direction:column;gap:9px}
+.skill-list span{font-family:var(--f-mono);font-size:12.5px;color:var(--ink-soft);display:flex;gap:10px}
+.skill-list span::before{content:"—";color:var(--yellow)}
 
-.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-.contact-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;transition:.25s}
-.contact-card:hover{border-color:var(--green);transform:translateY(-3px)}
-.contact-card .lbl{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
-.contact-card .val{margin-top:8px;font-weight:600}
-.contact-card:hover .val{color:var(--green)}
+/* ===== projects ===== */
+.proj-item{display:grid;grid-template-columns:80px 1.1fr 1.4fr;gap:28px;padding:34px 0;
+  border-top:1px solid var(--line);align-items:start;transition:padding-left .3s var(--ease)}
+.proj-item:last-child{border-bottom:1px solid var(--line)}
+.proj-item:hover{padding-left:14px}
+@media(max-width:800px){.proj-item{grid-template-columns:1fr;gap:10px}}
+.proj-index{font-family:var(--f-mono);font-size:13px;color:var(--ink-soft);padding-top:6px}
+.proj-name{font-family:var(--f-display);font-size:24px}
+.proj-flag{display:inline-block;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;
+  background:var(--yellow);color:var(--yellow-ink);padding:3px 8px;border-radius:999px;
+  vertical-align:middle;margin-left:10px;transform:translateY(-3px)}
+.proj-desc{font-size:14.5px;color:var(--ink-soft)}
+.proj-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.proj-links{display:flex;gap:18px;margin-top:16px}
+.proj-links a{font-family:var(--f-mono);font-size:13px;display:inline-flex;align-items:center;gap:7px;color:var(--ink)}
+.proj-links .arrow{color:var(--green);opacity:0;transition:all .2s var(--ease);transform:translateX(-6px)}
+.proj-links a:hover .arrow{opacity:1;transform:none}
 
-footer{border-top:1px solid var(--border);padding:34px 24px;text-align:center;font-family:var(--mono);font-size:.75rem;color:var(--muted)}
-footer a{color:var(--green)}
+/* ===== stats (dark) ===== */
+.stats-section{background:var(--ink);color:var(--white)}
+.stats-section .section-num{color:#8a8a8a}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:36px;padding:30px 0 10px}
+.stat .num{font-family:var(--f-display);font-size:clamp(36px,4.4vw,56px);color:var(--yellow)}
+.stat .label{font-family:var(--f-mono);font-size:12.5px;color:#b9b9b9;margin-top:8px;letter-spacing:.05em;text-transform:uppercase}
 
-.rv{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
-.rv.on{opacity:1;transform:none}
+/* ===== certificates ===== */
+.cert-note{border:1px dashed var(--line);background:var(--white);padding:56px 24px;text-align:center}
+.cert-note .mono{color:var(--green-dim);font-size:13px}
+.cert-note p{color:var(--ink-soft);margin-top:12px}
+
+/* ===== contact ===== */
+.contact-links{display:flex;flex-direction:column;gap:0;margin-top:8px}
+.contact-link{display:flex;align-items:center;justify-content:space-between;padding:16px 0;
+  border-top:1px solid var(--line);font-family:var(--f-mono);font-size:14px}
+.contact-link:last-child{border-bottom:1px solid var(--line)}
+.contact-link .k{color:var(--ink-soft);font-size:12.5px}
+.contact-link .arrow{color:var(--green);opacity:0;transition:all .2s var(--ease);transform:translateX(-6px)}
+.contact-link:hover .arrow{opacity:1;transform:none}
+
+.footer{border-top:1px solid var(--line);padding:40px 0;display:flex;align-items:center;
+  justify-content:space-between;flex-wrap:wrap;gap:16px;font-family:var(--f-mono);font-size:12px;color:var(--ink-soft)}
+.footer .logo{font-family:var(--f-display);color:var(--ink);font-size:16px}
+
+/* ===== reveal ===== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.on{opacity:1;transform:none}
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-in">
-    <a class="logo" href="#hero">N.</a>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#certificates">Certificates</a>
-      <a href="#contact">Contact</a>
-    </div>
+<!-- sidenav -->
+<aside class="sidenav">
+  <div>
+    <div class="logo">N.</div>
+    <nav class="sidenav-links">
+      <a href="#about">01 — About</a>
+      <a href="#skills">02 — Skills</a>
+      <a href="#projects">03 — Projects</a>
+      <a href="#certificates">04 — Certificates</a>
+      <a href="#contact">05 — Contact</a>
+    </nav>
   </div>
-</nav>
+  <div class="sidenav-foot">
+    <div><span class="dot"></span>Open to work</div>
+    <div>Egypt · 2026</div>
+  </div>
+</aside>
 
-<section id="hero">
-  <div class="hero-grid">
-    <div>
-      <span class="badge"><span class="dot"></span> Available for new projects</span>
-      <h1 class="hero-name">Nour <span>Eldein</span></h1>
-      <div class="hero-role">$ full-stack_web_developer --nextjs --nodejs</div>
-      <p class="hero-sub">Egyptian full-stack web developer building <b>e-commerce platforms</b>, <b>real-time apps</b> and <b>AI-powered web apps</b> — from Next.js frontends to Node.js backends, deployed and live.</p>
-      <div class="btns">
-        <a class="btn btn-p" href="#projects">View Projects</a>
-        <a class="btn btn-s" href="https://github.com/noooreldein" target="_blank">GitHub ↗</a>
-        <a class="btn btn-s" href="#contact">Contact Me</a>
+<!-- topbar -->
+<header class="topbar">
+  <div class="logo">N.</div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow"><i></i>Available for freelance &amp; projects</span>
+      <h1 class="hero-title">Nour<br>Eldein</h1>
+      <p class="hero-subtitle">Full-Stack Web Developer — Next.js, TypeScript, Node.js.</p>
+      <p class="hero-desc">I build e-commerce platforms, real-time apps and AI-powered web apps — from pixel-perfect frontends to production backends, deployed and live.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-solid">View Projects</a>
+        <a href="https://github.com/noooreldein" target="_blank" class="btn btn-outline">GitHub</a>
+        <a href="#contact" class="btn btn-yellow">Contact Me</a>
+      </div>
+      <div class="hero-badges">
+        <span class="badge">6 Public Projects</span>
+        <span class="badge">15+ Live Deployments</span>
+        <span class="badge">E-Commerce Platform</span>
+        <span class="badge">AI Web Apps</span>
       </div>
     </div>
-    <div class="term">
-      <div class="term-bar"><span></span><span></span><span></span></div>
-      <div class="term-body" id="term"></div>
-    </div>
-  </div>
-  <div class="scroll-hint">↓ scroll</div>
-</section>
-
-<section id="about">
-  <div class="sec-head rv">
-    <span class="sec-num">01 / About</span>
-    <h2>Who I am</h2>
-    <p>Full-stack web developer from Egypt. I design and ship complete platforms end-to-end — authentication, dashboards, databases, payment flows and deployment included.</p>
-  </div>
-  <div class="about-grid rv">
-    <div class="about-card"><div class="k">Base</div><div class="v">Egypt</div></div>
-    <div class="about-card"><div class="k">Focus</div><div class="v">Full-Stack Web</div></div>
-    <div class="about-card"><div class="k">Main Stack</div><div class="v">Next.js · TS</div></div>
-    <div class="about-card"><div class="k">Public Projects</div><div class="v">6</div></div>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="sec-head rv">
-    <span class="sec-num">02 / Skills</span>
-    <h2>Technical skills</h2>
-  </div>
-  <div class="skills-grid rv">
-    <div class="skill-card"><span class="idx">01</span><h3>Frontend</h3>
-      <div class="tags"><span class="tag">Next.js 14</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS</span><span class="tag">Responsive Design</span></div></div>
-    <div class="skill-card"><span class="idx">02</span><h3>Backend</h3>
-      <div class="tags"><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">REST APIs</span><span class="tag">Webhooks</span></div></div>
-    <div class="skill-card"><span class="idx">03</span><h3>Databases &amp; Auth</h3>
-      <div class="tags"><span class="tag">Supabase</span><span class="tag">SQLite</span><span class="tag">PostgreSQL</span><span class="tag">JWT Auth</span></div></div>
-    <div class="skill-card"><span class="idx">04</span><h3>E-Commerce Engineering</h3>
-      <div class="tags"><span class="tag">Shopping Carts</span><span class="tag">Order Tracking</span><span class="tag">Payment Flows</span><span class="tag">Admin Dashboards</span></div></div>
-    <div class="skill-card"><span class="idx">05</span><h3>AI-Powered Features</h3>
-      <div class="tags"><span class="tag">OpenAI API</span><span class="tag">Gemini API</span><span class="tag">DeepSeek</span><span class="tag">Prompt Engineering</span></div></div>
-    <div class="skill-card"><span class="idx">06</span><h3>Deploy &amp; Tools</h3>
-      <div class="tags"><span class="tag">Git / GitHub</span><span class="tag">Vercel</span><span class="tag">GitHub Pages</span><span class="tag">Linux</span></div></div>
-  </div>
-</section>
-
-<section id="projects">
-  <div class="sec-head rv">
-    <span class="sec-num">03 / Projects</span>
-    <h2>Selected projects</h2>
-    <p>Web platforms I designed, built and deployed — each one with real users and real engineering behind it.</p>
-  </div>
-  <div class="proj-grid rv">
-    <div class="proj">
-      <div class="top"><span class="num">01</span><span class="feat">FLAGSHIP</span></div>
-      <h3>FRIENDS — Medical Store</h3>
-      <p>Full Arabic e-commerce platform for medical products. Auth system, shopping cart, order tracking, WhatsApp &amp; COD payment flows, and a complete admin dashboard.</p>
-      <div class="tags"><span class="tag">Next.js 14</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">Tailwind</span></div>
-      <div class="links"><a href="https://github.com/noooreldein/FRIENDS.egy" target="_blank">Code ↗</a></div>
-    </div>
-    <div class="proj">
-      <div class="top"><span class="num">02</span></div>
-      <h3>Chat Zone</h3>
-      <p>Real-time chat platform with a clean modern UI — deployed and live for real users.</p>
-      <div class="tags"><span class="tag">HTML/CSS/JS</span><span class="tag">Real-time</span></div>
-      <div class="links"><a href="https://chat-zone-tau.vercel.app" target="_blank">Live ↗</a><a href="https://github.com/noooreldein/chat-zone" target="_blank">Code ↗</a></div>
-    </div>
-    <div class="proj">
-      <div class="top"><span class="num">03</span></div>
-      <h3>X-HOST Panel v3</h3>
-      <p>Web hosting control panel with dashboards for managing deployments and services — iterated through 4 versions.</p>
-      <div class="tags"><span class="tag">HTML/CSS/JS</span><span class="tag">Dashboards</span></div>
-      <div class="links"><a href="https://github.com/noooreldein/X-HOSV3" target="_blank">Code ↗</a></div>
-    </div>
-    <div class="proj">
-      <div class="top"><span class="num">04</span></div>
-      <h3>FullStack API v2</h3>
-      <p>Full-stack API platform with a complete web interface — endpoints, docs and deployment in one project.</p>
-      <div class="tags"><span class="tag">Python</span><span class="tag">REST API</span></div>
-      <div class="links"><a href="https://full-stack-api-v2.vercel.app" target="_blank">Live ↗</a><a href="https://github.com/noooreldein/FullStack-API-V2" target="_blank">Code ↗</a></div>
-    </div>
-    <div class="proj">
-      <div class="top"><span class="num">05</span></div>
-      <h3>HMGPT</h3>
-      <p>AI chat web app integrating large language model APIs with a clean conversational interface — live on Vercel.</p>
-      <div class="tags"><span class="tag">Python</span><span class="tag">AI APIs</span><span class="tag">Vercel</span></div>
-      <div class="links"><a href="https://pyramids-dun.vercel.app" target="_blank">Live ↗</a><a href="https://github.com/noooreldein/HMGPT" target="_blank">Code ↗</a></div>
-    </div>
-    <div class="proj">
-      <div class="top"><span class="num">06</span></div>
-      <h3>XKGPT</h3>
-      <p>AI assistant web platform with multi-model support and a web dashboard — live on Vercel.</p>
-      <div class="tags"><span class="tag">Python</span><span class="tag">AI APIs</span><span class="tag">Dashboard</span></div>
-      <div class="links"><a href="https://xkgpt.vercel.app" target="_blank">Live ↗</a><a href="https://github.com/noooreldein/XKGPT" target="_blank">Code ↗</a></div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="blob"></div>
+      <div class="terminal">
+        <div class="terminal-bar"><i></i><i></i><i></i></div>
+        <div class="terminal-body" id="term"></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="stats">
-  <div class="stats-grid">
-    <div class="stat"><div class="n" data-count="6">0</div><div class="lbl">Public Projects</div></div>
-    <div class="stat"><div class="n" data-count="15">0</div><div class="lbl">Live Deployments</div></div>
-    <div class="stat"><div class="n" data-count="2">0</div><div class="lbl">Years Coding</div></div>
-    <div class="stat"><div class="n" data-count="4">0</div><div class="lbl">E-Commerce Features Built</div></div>
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num">01 /</span>
+      <h2 class="section-title">Who I am</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p><b>Full-stack web developer from Egypt.</b> I design and ship complete platforms end-to-end — authentication systems, shopping carts, admin dashboards, REST APIs and databases, right through to deployment and going live.</p>
+        <p style="margin-top:14px">My flagship project is <b>FRIENDS</b>, a full Arabic e-commerce platform for medical products built with Next.js, TypeScript and Supabase. Beyond that I've shipped real-time chat apps, hosting dashboards and AI-powered web apps, most of them deployed and running on Vercel.</p>
+      </div>
+      <div class="facts reveal">
+        <div class="fact"><div class="k">Base</div><div class="v">Egypt</div></div>
+        <div class="fact"><div class="k">Focus</div><div class="v">Full-Stack Web</div></div>
+        <div class="fact"><div class="k">Main Stack</div><div class="v">Next.js · TS</div></div>
+        <div class="fact"><div class="k">Public Projects</div><div class="v">6</div></div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="certificates">
-  <div class="sec-head rv">
-    <span class="sec-num">04 / Certificates</span>
-    <h2>Certificate gallery</h2>
-  </div>
-  <div class="cert-note rv">
-    <span class="mono">// certificates section — under construction</span>
-    <p style="margin-top:12px">This section will showcase my certifications. Coming soon.</p>
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num">02 /</span>
+      <h2 class="section-title">Technical skills</h2>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-cat">
+        <span class="cat-num">01</span>
+        <h3>Frontend</h3>
+        <div class="skill-list">
+          <span>Next.js 14</span><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>Responsive Design</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <span class="cat-num">02</span>
+        <h3>Backend</h3>
+        <div class="skill-list">
+          <span>Node.js</span><span>Express.js</span><span>REST APIs</span><span>Webhooks</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <span class="cat-num">03</span>
+        <h3>Data &amp; Auth</h3>
+        <div class="skill-list">
+          <span>Supabase</span><span>PostgreSQL</span><span>SQLite</span><span>JWT Auth</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <span class="cat-num">04</span>
+        <h3>E-Commerce</h3>
+        <div class="skill-list">
+          <span>Shopping Carts</span><span>Order Tracking</span><span>Payment Flows</span><span>Admin Dashboards</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <span class="cat-num">05</span>
+        <h3>AI Features</h3>
+        <div class="skill-list">
+          <span>OpenAI API</span><span>Gemini API</span><span>DeepSeek</span><span>Prompt Engineering</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <span class="cat-num">06</span>
+        <h3>Deploy &amp; Tools</h3>
+        <div class="skill-list">
+          <span>Git / GitHub</span><span>Vercel</span><span>GitHub Pages</span><span>Linux</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="contact">
-  <div class="sec-head rv">
-    <span class="sec-num">05 / Contact</span>
-    <h2>Let's talk</h2>
-    <p>Open to freelance work, collaborations and full-stack web projects.</p>
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num">03 /</span>
+      <h2 class="section-title">Selected projects</h2>
+    </div>
+
+    <div class="proj-item reveal">
+      <span class="proj-index">01</span>
+      <div>
+        <h3 class="proj-name">FRIENDS — Medical Store<span class="proj-flag">FLAGSHIP</span></h3>
+        <div class="proj-links">
+          <a href="https://github.com/noooreldein/FRIENDS.egy" target="_blank">Code <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div>
+        <p class="proj-desc">Full Arabic e-commerce platform for medical products. Auth system, shopping cart, order tracking, WhatsApp &amp; COD payment flows, and a complete admin dashboard.</p>
+        <div class="proj-tags">
+          <span class="badge">Next.js 14</span><span class="badge">TypeScript</span><span class="badge">Supabase</span><span class="badge">Tailwind</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-item reveal">
+      <span class="proj-index">02</span>
+      <div>
+        <h3 class="proj-name">Chat Zone</h3>
+        <div class="proj-links">
+          <a href="https://chat-zone-tau.vercel.app" target="_blank">Live <span class="arrow">→</span></a>
+          <a href="https://github.com/noooreldein/chat-zone" target="_blank">Code <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div>
+        <p class="proj-desc">Real-time chat platform with a clean modern UI — deployed and live for real users.</p>
+        <div class="proj-tags"><span class="badge">HTML/CSS/JS</span><span class="badge">Real-time</span></div>
+      </div>
+    </div>
+
+    <div class="proj-item reveal">
+      <span class="proj-index">03</span>
+      <div>
+        <h3 class="proj-name">X-HOST Panel v3</h3>
+        <div class="proj-links">
+          <a href="https://github.com/noooreldein/X-HOSV3" target="_blank">Code <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div>
+        <p class="proj-desc">Web hosting control panel with dashboards for managing deployments and services — iterated through 4 versions.</p>
+        <div class="proj-tags"><span class="badge">HTML/CSS/JS</span><span class="badge">Dashboards</span></div>
+      </div>
+    </div>
+
+    <div class="proj-item reveal">
+      <span class="proj-index">04</span>
+      <div>
+        <h3 class="proj-name">FullStack API v2</h3>
+        <div class="proj-links">
+          <a href="https://full-stack-api-v2.vercel.app" target="_blank">Live <span class="arrow">→</span></a>
+          <a href="https://github.com/noooreldein/FullStack-API-V2" target="_blank">Code <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div>
+        <p class="proj-desc">Full-stack API platform with a complete web interface — endpoints, docs and deployment in one project.</p>
+        <div class="proj-tags"><span class="badge">Python</span><span class="badge">REST API</span></div>
+      </div>
+    </div>
+
+    <div class="proj-item reveal">
+      <span class="proj-index">05</span>
+      <div>
+        <h3 class="proj-name">HMGPT</h3>
+        <div class="proj-links">
+          <a href="https://pyramids-dun.vercel.app" target="_blank">Live <span class="arrow">→</span></a>
+          <a href="https://github.com/noooreldein/HMGPT" target="_blank">Code <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div>
+        <p class="proj-desc">AI chat web app integrating large language model APIs with a clean conversational interface.</p>
+        <div class="proj-tags"><span class="badge">Python</span><span class="badge">AI APIs</span><span class="badge">Vercel</span></div>
+      </div>
+    </div>
+
+    <div class="proj-item reveal">
+      <span class="proj-index">06</span>
+      <div>
+        <h3 class="proj-name">XKGPT</h3>
+        <div class="proj-links">
+          <a href="https://xkgpt.vercel.app" target="_blank">Live <span class="arrow">→</span></a>
+          <a href="https://github.com/noooreldein/XKGPT" target="_blank">Code <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div>
+        <p class="proj-desc">AI assistant web platform with multi-model support and a web dashboard.</p>
+        <div class="proj-tags"><span class="badge">Python</span><span class="badge">AI APIs</span><span class="badge">Dashboard</span></div>
+      </div>
+    </div>
   </div>
-  <div class="contact-grid rv">
-    <a class="contact-card" href="https://github.com/noooreldein" target="_blank">
-      <div class="lbl mono">GitHub</div><div class="val">noooreldein ↗</div></a>
-    <a class="contact-card" href="mailto:">
-      <div class="lbl mono">Email</div><div class="val">Add your email</div></a>
-    <a class="contact-card" href="https://wa.me/" target="_blank">
-      <div class="lbl mono">WhatsApp</div><div class="val">Add your number</div></a>
-    <a class="contact-card" href="https://t.me/" target="_blank">
-      <div class="lbl mono">Telegram</div><div class="val">Add your username</div></a>
+</section>
+
+<!-- STATS -->
+<section class="section stats-section" id="stats">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num">04 /</span>
+      <h2 class="section-title">By the numbers</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat reveal"><div class="num" data-count="6">0</div><div class="label">Public Projects</div></div>
+      <div class="stat reveal"><div class="num" data-count="15">0</div><div class="label">Live Deployments</div></div>
+      <div class="stat reveal"><div class="num" data-count="2">0</div><div class="label">Years Coding</div></div>
+      <div class="stat reveal"><div class="num" data-count="4">0</div><div class="label">E-Commerce Features</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section class="section" id="certificates">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num">05 /</span>
+      <h2 class="section-title">Certificates</h2>
+    </div>
+    <div class="cert-note reveal">
+      <span class="mono">// certificates gallery — coming soon</span>
+      <p>This section will showcase my certifications. Under construction.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num">06 /</span>
+      <h2 class="section-title">Let's talk</h2>
+      <p class="section-sub">Open to freelance work, collaborations and full-stack web projects.</p>
+    </div>
+    <div class="contact-links reveal">
+      <a class="contact-link" href="https://github.com/noooreldein" target="_blank">
+        <span class="k">GitHub</span><span>noooreldein <span class="arrow">→</span></span></a>
+      <a class="contact-link" href="mailto:">
+        <span class="k">Email</span><span>Add your email <span class="arrow">→</span></span></a>
+      <a class="contact-link" href="https://wa.me/" target="_blank">
+        <span class="k">WhatsApp</span><span>Add your number <span class="arrow">→</span></span></a>
+      <a class="contact-link" href="https://t.me/" target="_blank">
+        <span class="k">Telegram</span><span>Add your username <span class="arrow">→</span></span></a>
+    </div>
   </div>
 </section>
 
 <footer>
-  <span class="grn">N.</span> © 2026 Nour Eldein · live on <a href="https://noooreldein.github.io">noooreldein.github.io</a> · <a href="#hero">Back to top ↑</a>
+  <div class="container footer">
+    <span class="logo">N.</span>
+    <span>© 2026 Nour Eldein — built with git &amp; coffee</span>
+    <a href="#hero">Back to top ↑</a>
+  </div>
 </footer>
 
+</main>
+
 <script>
+// terminal typing
 const lines=[
- {t:"$ whoami",c:"p"},
- {t:"nour_eldein",c:""},
- {t:"$ cat stack.json",c:"p"},
- {t:"Next.js · TypeScript · Node.js · Supabase",c:""},
- {t:"$ npm run build && vercel deploy",c:"p"},
- {t:"[ OK ] shipped to production ✓",c:""},
- {t:"$ curl -s noooreldein.github.io",c:"p"},
- {t:"200 OK — welcome to my portfolio",c:""}
+ {html:'<span class="muted">$</span> <span class="cmd">whoami</span>'},
+ {html:'nour_eldein'},
+ {html:'<span class="muted">$</span> <span class="cmd">cat</span> stack.json'},
+ {html:'Next.js · TypeScript · Node.js'},
+ {html:'<span class="muted">$</span> <span class="cmd">npm run build</span>'},
+ {html:'<span class="ok">[ OK ]</span> compiled successfully'},
+ {html:'<span class="muted">$</span> <span class="cmd">vercel deploy</span>'},
+ {html:'<span class="ok">[ OK ]</span> live at noooreldein.github.io'}
 ];
 const term=document.getElementById('term');
-let li=0,ci=0,cur=document.createElement('div');cur.className='l';term.appendChild(cur);
-function type(){
- if(li>=lines.length)return;
- const line=lines[li];
- cur.innerHTML+=`<span class="${line.c}">`;
- (function step(){
-   const span=cur.lastChild;
-   if(ci<line.t.length){span.textContent+=line.t[ci++];setTimeout(step,40)}
-   else{li++;ci=0;cur.innerHTML+='<span class="cursor"></span>';setTimeout(()=>{const c=cur.querySelector('.cursor');if(c)c.remove();cur=document.createElement('div');cur.className='l';term.appendChild(cur);type()},420)}
- })();
+let li=0;
+function nextLine(){
+ if(li>=lines.length){const c=document.createElement('div');c.innerHTML='<span class="cursor"></span>';term.appendChild(c);return}
+ const d=document.createElement('div');
+ if(lines[li].html.includes('$')){d.innerHTML=lines[li].html;term.appendChild(d);li++;setTimeout(nextLine,480)}
+ else{
+   const plain=lines[li].html.replace(/<[^>]+>/g,'');d.textContent='';term.appendChild(d);
+   let ci=0;(function t(){if(ci<plain.length){d.textContent+=plain[ci++];setTimeout(t,34)}else{li++;setTimeout(nextLine,420)}})();
+ }
 }
-setTimeout(type,700);
+setTimeout(nextLine,600);
 
+// reveal on scroll
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
+// counters
 const cio=new IntersectionObserver(es=>es.forEach(e=>{
  if(!e.isIntersecting)return;cio.unobserve(e.target);
  const el=e.target,end=+el.dataset.count;let n=0;
- const iv=setInterval(()=>{n+=Math.max(1,Math.ceil(end/28));if(n>=end){n=end;clearInterval(iv)}el.textContent=n},30);
+ const iv=setInterval(()=>{n+=Math.max(1,Math.ceil(end/26));if(n>=end){n=end;clearInterval(iv)}el.textContent=n+(end===15?'+':'')},35);
 }),{threshold:.5});
 document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
 </script>
